@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 
 const App = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("user") || "{}")
