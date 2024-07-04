@@ -41,12 +41,12 @@ const App = () => {
         <Route
           index
           path="/"
-          element={currentUser ? <Dashboard /> : <Navigate to="/login" />}
+          element={!currentUser ? <Dashboard /> : <Navigate to="/login" />}
         />
         <Route
           index
           path="/deposit"
-          element={currentUser ? <Deposit /> : <Navigate to="/login" />}
+          element={!currentUser ? <Deposit /> : <Navigate to="/login" />}
         />
         {/* Add more protected routes as needed */}
       </Routes>
