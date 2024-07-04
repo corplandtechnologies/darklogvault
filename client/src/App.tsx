@@ -2,7 +2,6 @@ import {
   Navigate,
   Route,
   Routes,
-  useNavigate,
   useLocation,
 } from "react-router-dom";
 import Register from "./Pages/Register";
