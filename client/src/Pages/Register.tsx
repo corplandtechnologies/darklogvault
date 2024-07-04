@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { registerUser } from "@/api";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +18,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await registerUser(username, email, password);

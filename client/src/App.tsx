@@ -11,13 +11,23 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState<object>({});
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const user: object = JSON.parse(localStorage.getItem("user"));
-    setCurrentUser(user);
-    if (!user) {
-      return navigate("/login");
-    }
-  }, []);
+useEffect(() => {
+  const storedUserString = localStorage.getItem("user");
+  let user: object;
+
+  if (storedUserString !== null) {
+    user = JSON.parse(storedUserString);
+  } else {
+    // Handle the case where there is no user data in local storage
+    // For example, set user to an empty object or null
+    user = {};
+  }
+
+  setCurrentUser(user);
+  if (!user) {
+    return navigate("/login");
+  }
+}, []);
 
   const isAuthPage = () => {
     return ["/register", "/login"].includes(window.location.pathname);
