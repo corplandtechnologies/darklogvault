@@ -1,4 +1,5 @@
 import {
+  Navigate,
   Route,
   Routes,
   useNavigate,
@@ -20,16 +21,6 @@ const App = () => {
   );
 
   useEffect(() => {
-    if (
-      !currentUser &&
-      location.pathname !== "/login" &&
-      location.pathname !== "/register"
-    ) {
-      navigate("/login");
-    }
-  }, [currentUser, navigate, location]);
-
-  useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
     setCurrentUser(user);
   }, []);
@@ -41,16 +32,6 @@ const App = () => {
         <Navbar />
       )}
       <Routes>
-        {/* Protected routes */}
-        <Route
-          path={currentUser ? "/" : "/login"}
-          element={currentUser ? <Dashboard /> : <Login />}
-        />
-        <Route
-          path="/deposit"
-          element={<Deposit />}
-        />
-
         {/* Public routes */}
         <Route
           path="/register"
@@ -60,6 +41,17 @@ const App = () => {
           path="/login"
           element={<Login />}
         />
+
+        {/* Protected routes */}
+        <Route
+          path="/"
+          element={currentUser ? <Dashboard /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/deposit"
+          element={currentUser ? <Deposit /> : <Navigate to="/login" />}
+        />
+        {/* Add more protected routes as needed */}
       </Routes>
     </>
   );
