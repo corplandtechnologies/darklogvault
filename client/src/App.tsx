@@ -1,9 +1,4 @@
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import { Toaster } from "react-hot-toast";
@@ -32,20 +27,24 @@ const App = () => {
       <Routes>
         {/* Public routes */}
         <Route
+          index
           path="/register"
           element={<Register />}
         />
         <Route
+          index
           path="/login"
           element={<Login />}
         />
 
         {/* Protected routes */}
         <Route
+          index
           path="/"
           element={currentUser ? <Dashboard /> : <Navigate to="/login" />}
         />
         <Route
+          index
           path="/deposit"
           element={currentUser ? <Deposit /> : <Navigate to="/login" />}
         />
