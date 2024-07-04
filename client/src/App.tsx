@@ -1,34 +1,40 @@
-// Import necessary hooks and components
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import { Toaster } from "react-hot-toast";
 import Dashboard from "./Pages/Dashboard";
 import Deposit from "./Pages/Deposit";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
-
-// Custom hook for protected routes
-const useProtectedRoute = (navigate: ReturnType<typeof useNavigate>) => {
-  const currentUser = JSON.parse(localStorage.getItem("user") || "{}");
-
-  useEffect(() => {
-    if (!currentUser) {
-      navigate("/login");
-    }
-  }, [currentUser, navigate]);
-};
 
 const App = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("user") || "{}")
+  );
 
-  // Use the custom hook for protected routes
-  useProtectedRoute(navigate);
+  useEffect(() => {
+    if (
+      !currentUser &&
+      location.pathname !== "/login" &&
+      location.pathname !== "/register"
+    ) {
+      navigate("/login");
+    }
+  }, [currentUser, navigate, location]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    setCurrentUser(user);
+  }, []);
 
   return (
     <>
       <Toaster />
-      <Navbar />
+      {location.pathname !== "/login" && location.pathname !== "/register" && (
+        <Navbar />
+      )}
       <Routes>
         {/* Protected routes */}
         <Route
