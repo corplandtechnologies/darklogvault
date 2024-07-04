@@ -1,4 +1,10 @@
-import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  useNavigate,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import { Toaster } from "react-hot-toast";
@@ -39,7 +45,7 @@ const App = () => {
         {/* Protected routes */}
         <Route
           path="/"
-          element={<Dashboard />}
+          element={currentUser ? <Dashboard /> : <Navigate to="/login" />}
         />
         <Route
           path="/deposit"
