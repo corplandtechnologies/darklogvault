@@ -3,7 +3,6 @@ import {
   Routes,
   useNavigate,
   useLocation,
-  Navigate,
 } from "react-router-dom";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
@@ -44,8 +43,8 @@ const App = () => {
       <Routes>
         {/* Protected routes */}
         <Route
-          path="/"
-          element={currentUser ? <Dashboard /> : <Navigate to="/login" />}
+          path={currentUser ? "/" : "/login"}
+          element={currentUser ? <Dashboard /> : <Login />}
         />
         <Route
           path="/deposit"
