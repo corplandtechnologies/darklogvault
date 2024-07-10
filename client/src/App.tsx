@@ -6,18 +6,13 @@ import Dashboard from "./Pages/Dashboard";
 import Deposit from "./Pages/Deposit";
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
+import DumpsAndPins from "./Pages/DumpsAndPins";
 
 const App = () => {
   const location = useLocation();
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("user") || "{}")
-  );
+  const currentUser = JSON.parse(localStorage.getItem("user") || "{}")
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
-    setCurrentUser(user);
-  }, []);
-
+ 
   return (
     <>
       <Toaster />
@@ -41,12 +36,17 @@ const App = () => {
         <Route
           index
           path="/"
-          element={!currentUser ? <Dashboard /> : <Navigate to="/login" />}
+          element={currentUser ? <Dashboard /> : <Navigate to="/login" />}
         />
         <Route
           index
           path="/deposit"
-          element={!currentUser ? <Deposit /> : <Navigate to="/login" />}
+          element={currentUser ? <Deposit /> : <Navigate to="/login" />}
+        />
+         <Route
+          index
+          path="/dumps"
+          element={currentUser ? <DumpsAndPins /> : <Navigate to="/login" />}
         />
         {/* Add more protected routes as needed */}
       </Routes>

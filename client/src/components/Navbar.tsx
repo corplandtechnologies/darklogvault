@@ -23,7 +23,7 @@ const Navbar = () => {
           <span className="sr-only">Acme Inc</span>
         </Link>
         <Link
-          to="#"
+          to="/"
           className="text-foreground transition-colors hover:text-foreground">
           Dashboard
         </Link>
@@ -33,7 +33,7 @@ const Navbar = () => {
           Deposit
         </Link>
         <Link
-          to="#"
+          to="/dumps"
           className="text-muted-foreground transition-colors hover:text-foreground">
           Dumps + Pins
         </Link>
@@ -82,7 +82,7 @@ const Navbar = () => {
               <span className="sr-only">Acme Inc</span>
             </Link>
             <Link
-              to="#"
+                        to="/"
               className="hover:text-foreground">
               Dashboard
             </Link>
@@ -92,7 +92,7 @@ const Navbar = () => {
               Deposit
             </Link>
             <Link
-              to="#"
+              to="/dumps"
               className="text-muted-foreground hover:text-foreground">
               Dumps + Pins
             </Link>

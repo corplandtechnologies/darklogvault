@@ -14,6 +14,10 @@ const UserModel = new Schema({
     type: String,
     required: true,
   },
+  wallet: {
+    type: Number,
+    default: 0,
+  },
 });
 
 module.exports = mongoose.model("User", UserModel);
