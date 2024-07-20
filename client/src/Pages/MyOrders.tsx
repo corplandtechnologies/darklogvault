@@ -15,45 +15,32 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export default function DumpsAndPins() {
+export default function MyOrders() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Dumps + Pins</CardTitle>
+        <CardTitle>
+          <CardTitle>My Orders</CardTitle>
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead>BALANCE</TableHead>
-              <TableHead>DESCRIPTION</TableHead>
-              <TableHead>PRICE</TableHead>
-              <TableHead>ACTION</TableHead>
+              <TableHead>TYPE</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             <TableRow>
-              <TableCell>$11,314.89</TableCell>
-              <TableCell>Missouri, US, Track 2, Pin, Address</TableCell>
-              <TableCell>$314.89</TableCell>
-              <TableCell>
-                <Button>Buy now</Button>
+              <TableCell className="text-center font-bold text-2xl" colSpan={2}>
+                No orders yet
               </TableCell>
             </TableRow>
-            {/* Repeat the above TableRow pattern for each item */}
-            <TableRow>
-              <TableCell>$17,995.28</TableCell>
-              <TableCell>Nebraska, US, Track 2, Pin, Address</TableCell>
-              <TableCell>$1314.89</TableCell>
-              <TableCell>
-                <Button>Buy now</Button>
-              </TableCell>
-            </TableRow>
-            {/* Add more TableRow components as needed */}
           </TableBody>
         </Table>
       </CardContent>
-      <CardFooter className="flex justify-between">
+      {/* <CardFooter className="flex justify-between">
         <div className="text-xs text-muted-foreground">
           Showing <strong>1-10</strong> of <strong>32</strong> items
         </div>
@@ -61,7 +48,7 @@ export default function DumpsAndPins() {
           <Button className="mx-2">{"<"}</Button>
           <Button className="mx-2">{">"}</Button>
         </div>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 }
