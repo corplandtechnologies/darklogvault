@@ -23,8 +23,8 @@ const handleSubmit = async (e: React.FormEvent) => {
   try {
     const { data } = await loginUser(email, password); // Assuming the API call returns a response with a data property containing user and token
     toast("Login successful! Redirecting...");
-    localStorage.setItem("token", data.token); // Store token
-    localStorage.setItem("user", JSON.stringify(data.user)); // Store user object
+    localStorage.setItem("token", data?.token); // Store token
+    localStorage.setItem("user", JSON.stringify(data?.user)); // Store user object
     navigate("/");
   } catch (error) {
     console.error("Login failed:", error);

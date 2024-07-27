@@ -14,8 +14,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { paypalData } from "@/data";
+import { useState } from "react";
 
 export default function Paypal() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const currentPageItems = paypalData.slice(startIndex, endIndex);
+
   return (
     <Card>
       <CardHeader>
@@ -34,76 +44,42 @@ export default function Paypal() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell>$13,812.20</TableCell>
-              <TableCell>
-                Login Credentials + Mail Access + Auth Cookies
-              </TableCell>
-              <TableCell>$402.00</TableCell>
-              <TableCell>
-                <Button>Buy now</Button>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>$13,464.92</TableCell>
-              <TableCell>
-                Login Credentials + Mail Access + IP Location + Auth Cookies
-              </TableCell>
-              <TableCell>$397.00</TableCell>
-              <TableCell>
-                <Button>Buy now</Button>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>$18,444.71</TableCell>
-              <TableCell>
-                Login Credentials + Mail Access + Auth Cookies
-              </TableCell>
-              <TableCell>$464.00</TableCell>
-              <TableCell>
-                <Button>Buy now</Button>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>$18,258.40</TableCell>
-              <TableCell>
-                Login Credentials + Mail Access + IP Location + Auth Cookies
-              </TableCell>
-              <TableCell>$461.00</TableCell>
-              <TableCell>
-                <Button>Buy now</Button>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>$18,398.32</TableCell>
-              <TableCell>
-                Login Credentials + Mail Access + IP Location + Auth Cookies
-              </TableCell>
-              <TableCell>$463.00</TableCell>
-              <TableCell>
-                <Button>Buy now</Button>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>$13,597.15</TableCell>
-              <TableCell>
-                Login Credentials + Mail Access + IP Location + Auth Cookies
-              </TableCell>
-              <TableCell>$399.00</TableCell>
-              <TableCell>
-                <Button>Buy now</Button>
-              </TableCell>
-            </TableRow>
+            {currentPageItems.map(({ id, balance, description, price }) => (
+              <TableRow key={id}>
+                <TableCell>{balance}</TableCell>
+                <TableCell>{description}</TableCell>
+                <TableCell>{price}</TableCell>
+                <TableCell>
+                  <Button>Buy now</Button>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </CardContent>
       <CardFooter className="flex justify-between">
         <div className="text-xs text-muted-foreground">
-          Showing <strong>1-10</strong> of <strong>32</strong> items
+          Showing{" "}
+          <strong>
+            {currentPage}-{currentPageItems.length}
+          </strong>{" "}
+          of <strong>{paypalData.length}</strong> items
         </div>
         <div className="flex justify-center mt-4">
-          <Button className="mx-2">{"<"}</Button>
-          <Button className="mx-2">{">"}</Button>
+          <Button
+            onClick={() => setCurrentPage(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            {"<"}
+          </Button>
+          <Button
+            onClick={() => setCurrentPage(currentPage + 1)}
+            disabled={
+              currentPage === Math.ceil(paypalData.length / itemsPerPage)
+            }
+          >
+            {">"}
+          </Button>
         </div>
       </CardFooter>
     </Card>

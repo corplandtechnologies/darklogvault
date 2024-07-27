@@ -31,7 +31,7 @@ export default function Register() {
   };
 
   return (
-    <div className="bg-login flex flex-col justify-center items-center h-[100vh]">
+    <div className="bg-login flex flex-col justify-center items-center h-[100vh] bg-login">
       <Card className="mx-auto max-w-xl">
         <CardHeader>
           <CardTitle className="text-xl">Sign Up</CardTitle>

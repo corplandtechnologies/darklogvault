@@ -42,3 +42,384 @@ export const usbanks = [
   "Ally Financial",
   "KeyBank",
 ];
+
+export const canadaBanks = ["Scotia Bank", "RBC Log", "TD Bank"];
+
+export const dumpsAndPinsData = [
+  {
+    id: 1,
+    balance: "$11,314.89",
+    description: "Missouri, US, Track 2, Pin, Address",
+    price: "$314.89",
+  },
+  {
+    id: 2,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 3,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 4,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 5,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 6,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 7,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 8,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 9,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 10,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 11,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 12,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 13,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 14,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 15,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 16,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 17,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 18,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 19,
+    balance: "$17,995.28",
+    description: "Nebraska, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+  {
+    id: 20,
+    balance: "$17,995.28",
+    description: "California, US, Track 2, Pin, Address",
+    price: "$1314.89",
+  },
+];
+
+export const cashAppData = [
+  {
+    id: 1,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 2,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 3,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 4,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 5,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 6,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 7,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 8,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 9,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 10,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 11,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 12,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 13,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 14,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 15,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 16,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 17,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 18,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 19,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 20,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+];
+
+export const paypalData = [
+  {
+    id: 1,
+    balance: "$13,812.20",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$402.00",
+  },
+  {
+    id: 2,
+    balance: "$13,464.92",
+    description: "Login Credentials + Mail Access + IP Location + Auth Cookies",
+    price: "$397.00",
+  },
+  {
+    id: 3,
+    balance: "$18,444.71",
+    description: "Login Credentials + Mail Access + Auth Cookies",
+    price: "$464.00",
+  },
+];
+
+// index.ts
+
+export const canadaBanksData = [
+  {
+    id: 1,
+    bankName: "Scotia Bank",
+    balance: "$11,729.06",
+    type: "Saving + Checking",
+    info: "Bank + Mail Access + Billing",
+    state: "KS",
+    gender: "Male",
+    dob: "27/3/1965",
+    price: "$375.00",
+  },
+  {
+    id: 2,
+    bankName: "Scotia Bank",
+    balance: "$11,562.80",
+    type: "Saving + Checking",
+    info: "Bank + Mail Access + Billing",
+    state: "MI",
+    gender: "Male",
+    dob: "16/5/1979",
+    price: "$372.00",
+  },
+  {
+    id: 3,
+    bankName: "TD Bank",
+    balance: "$8,500.69",
+    type: "Saving + Checking",
+    info: "Bank + Mail Access + Billing",
+    state: "AZ",
+    gender: "Male",
+    dob: "26/2/1990",
+    price: "$313.00",
+  },
+  {
+    id: 4,
+    bankName: "RBC Log",
+    balance: "$10,460.44",
+    type: "Saving + Checking",
+    info: "Bank + Mail Access + Billing + Cookies",
+    state: "ID",
+    gender: "Male",
+    dob: "12/3/1994",
+    price: "$351.00",
+  },
+  // Add more objects as needed
+];
+
+export const usBanksData = [
+  {
+    id: 1,
+    bankName: "Scotia Bank",
+    balance: "$11,729.06",
+    type: "Saving + Checking",
+    info: "Bank + Mail Access + Billing",
+    state: "KS",
+    gender: "Male",
+    dob: "27/3/1965",
+    price: "$375.00",
+  },
+  {
+    id: 2,
+    bankName: "Scotia Bank",
+    balance: "$11,562.80",
+    type: "Saving + Checking",
+    info: "Bank + Mail Access + Billing",
+    state: "MI",
+    gender: "Male",
+    dob: "16/5/1979",
+    price: "$372.00",
+  },
+  {
+    id: 3,
+    bankName: "TD Bank",
+    balance: "$8,500.69",
+    type: "Saving + Checking",
+    info: "Bank + Mail Access + Billing",
+    state: "AZ",
+    gender: "Male",
+    dob: "26/2/1990",
+    price: "$313.00",
+  },
+  {
+    id: 4,
+    bankName: "RBC Log",
+    balance: "$10,460.44",
+    type: "Saving + Checking",
+    info: "Bank + Mail Access + Billing + Cookies",
+    state: "ID",
+    gender: "Male",
+    dob: "12/3/1994",
+    price: "$351.00",
+  },
+  // Add more objects as needed
+];
+
+export const ukBanksData = [
+  {
+    id: 1,
+    bankName: "HSBC Holdings",
+    balance: "$11,729.06",
+    type: "Saving + Checking",
+    info: "Bank + Mail Access + Billing",
+    state: "KS",
+    gender: "Male",
+    dob: "27/3/1965",
+    price: "$375.00",
+  }
+];

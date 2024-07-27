@@ -20,3 +20,5 @@ export const loginUser = (email: string, password: string) => {
 export const deposit = (amount: number) => {
   return API.post("/users/deposit", { amount });
 };
+
+export const getUserById = (id: string) => API.get(`/users/${id}`);

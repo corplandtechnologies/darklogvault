@@ -15,15 +15,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ukbanks, ukBanksData } from "@/data";
+import { canadaBanks, canadaBanksData } from "@/data";
 import { useState } from "react";
 
-export default function UKBanks() {
+export default function CanadaBanks() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [selectedBank, setSelectedBank] = useState("");
 
-  const filteredData = ukBanksData.filter(
+  const filteredData = canadaBanksData.filter(
     (item) => item.bankName === selectedBank || selectedBank === ""
   );
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -33,9 +33,9 @@ export default function UKBanks() {
   return (
     <Card>
       <CardHeader>
-        <Filter banks={ukbanks} onBankSelect={setSelectedBank} />
+        <Filter banks={canadaBanks} onBankSelect={setSelectedBank} />
         <CardTitle>
-          <CardTitle>UK Bank Logs</CardTitle>
+          <CardTitle>Canada Bank Logs</CardTitle>
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -102,7 +102,7 @@ export default function UKBanks() {
           <Button
             onClick={() => setCurrentPage(currentPage + 1)}
             disabled={
-              currentPage === Math.ceil(ukBanksData.length / itemsPerPage)
+              currentPage === Math.ceil(filteredData.length / itemsPerPage)
             }
           >
             {">"}

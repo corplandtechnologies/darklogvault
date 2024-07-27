@@ -14,8 +14,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { dumpsAndPinsData } from "@/data";
+import { useState } from "react";
 
 export default function DumpsAndPins() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const currentPageItems = dumpsAndPinsData.slice(startIndex, endIndex);
+
   return (
     <Card>
       <CardHeader>
@@ -32,34 +42,42 @@ export default function DumpsAndPins() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell>$11,314.89</TableCell>
-              <TableCell>Missouri, US, Track 2, Pin, Address</TableCell>
-              <TableCell>$314.89</TableCell>
-              <TableCell>
-                <Button>Buy now</Button>
-              </TableCell>
-            </TableRow>
-            {/* Repeat the above TableRow pattern for each item */}
-            <TableRow>
-              <TableCell>$17,995.28</TableCell>
-              <TableCell>Nebraska, US, Track 2, Pin, Address</TableCell>
-              <TableCell>$1314.89</TableCell>
-              <TableCell>
-                <Button>Buy now</Button>
-              </TableCell>
-            </TableRow>
-            {/* Add more TableRow components as needed */}
+            {currentPageItems.map(({ id, balance, description, price }) => (
+              <TableRow key={id}>
+                <TableCell>{balance}</TableCell>
+                <TableCell>{description}</TableCell>
+                <TableCell>{price}</TableCell>
+                <TableCell>
+                  <Button>Buy now</Button>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </CardContent>
       <CardFooter className="flex justify-between">
         <div className="text-xs text-muted-foreground">
-          Showing <strong>1-10</strong> of <strong>32</strong> items
+          Showing{" "}
+          <strong>
+            {currentPage}-{currentPageItems.length}
+          </strong>{" "}
+          of <strong>{dumpsAndPinsData.length}</strong> items
         </div>
         <div className="flex justify-center mt-4">
-          <Button className="mx-2">{"<"}</Button>
-          <Button className="mx-2">{">"}</Button>
+          <Button
+            onClick={() => setCurrentPage(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            {"<"}
+          </Button>
+          <Button
+            onClick={() => setCurrentPage(currentPage + 1)}
+            disabled={
+              currentPage === Math.ceil(dumpsAndPinsData.length / itemsPerPage)
+            }
+          >
+            {">"}
+          </Button>
         </div>
       </CardFooter>
     </Card>

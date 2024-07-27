@@ -1,3 +1,4 @@
+const User = require("../models/user.model");
 const deposit = async (req, res) => {
   const { amount } = req.body;
   // Simulate fetching a BTC wallet address
@@ -19,6 +20,30 @@ const deposit = async (req, res) => {
   });
 };
 
+const updateUserWallet = async (userId, amount) => {
+  const updatedUser = await User.findByIdAndUpdate(
+    userId,
+    { $inc: { wallet: amount } },
+    { new: true }
+  );
+  return updatedUser;
+};
+
+const getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select("-password");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 module.exports = {
-    deposit
-}
+  deposit,
+  updateUserWallet,
+  getUserById,
+};

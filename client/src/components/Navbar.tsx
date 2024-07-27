@@ -1,5 +1,5 @@
 import { CircleUser, Menu, Package2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -11,8 +11,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Card } from "./ui/card";
+import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
   return (
     <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
@@ -42,16 +50,22 @@ const Navbar = () => {
           Dumps + Pins
         </Link>
         <Link
-          to="/usbanks"
+          to="/banks/us"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           US Bank Logs
         </Link>
         <Link
-          to="/ukbanks"
+          to="/banks/uk"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           UK Bank Logs
+        </Link>
+        <Link
+          to="/banks/canada"
+          className="text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Canada Bank Logs
         </Link>
         <Link
           to="/cashapp"
@@ -110,16 +124,22 @@ const Navbar = () => {
               Dumps + Pins
             </Link>
             <Link
-              to="/usbanks"
+              to="/banks/us"
               className="text-muted-foreground hover:text-foreground"
             >
               US Bank Logs
             </Link>
             <Link
-              to="/ukbanks"
+              to="/banks/uk"
               className="text-muted-foreground hover:text-foreground"
             >
               UK Bank Logs
+            </Link>
+            <Link
+              to="/banks/canada"
+              className="text-muted-foreground hover:text-foreground"
+            >
+              Canada Bank Logs
             </Link>
             <Link
               to="/cashapp"
@@ -152,7 +172,9 @@ const Navbar = () => {
         <div className="ml-auto flex-1 sm:flex-initial">
           <div className="relative">
             <Card>
-              <div className="p-1 text-center">$ 0.00</div>
+              <div className="p-1 text-center">
+                $ {currentUser?.wallet.toFixed(2)}
+              </div>
             </Card>
           </div>
         </div>
@@ -164,14 +186,14 @@ const Navbar = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>{currentUser?.username}</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <Link to="/">
+            <Link to="/deposit">
               <DropdownMenuItem>Wallet</DropdownMenuItem>
             </Link>
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

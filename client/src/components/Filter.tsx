@@ -1,4 +1,3 @@
-// Filter.tsx
 import React from "react";
 import {
   DropdownMenu,
@@ -13,9 +12,11 @@ import { ListFilter } from "lucide-react";
 
 interface FilterProps {
   banks: string[];
+  onBankSelect: (bank: string) => void; // Updated interface
 }
 
-const Filter: React.FC<FilterProps> = ({ banks }) => {
+const Filter: React.FC<FilterProps> = ({ banks, onBankSelect }) => {
+  // Destructure onBankSelect from props
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -32,7 +33,10 @@ const Filter: React.FC<FilterProps> = ({ banks }) => {
         <DropdownMenuLabel>Filter by Bank</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {banks.map((bank, index) => (
-          <DropdownMenuCheckboxItem key={index}>
+          <DropdownMenuCheckboxItem
+            key={index}
+            onClick={() => onBankSelect(bank)} // Corrected typo here
+          >
             {bank}
           </DropdownMenuCheckboxItem>
         ))}

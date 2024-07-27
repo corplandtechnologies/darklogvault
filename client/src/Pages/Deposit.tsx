@@ -31,13 +31,15 @@ const Deposit = () => {
                 name="amount"
                 placeholder="Enter Amount"
                 className="w-full focus-visible:outline-sky-600 "
+                pattern="\d*"
               />
             </div>
           </div>
           <div>
             <Button
               type="submit"
-              className="bg-blue-500 text-white py-2 px-5 rounded-md text-sm font-semibold ">
+              className="bg-blue-500 text-white py-2 px-5 rounded-md text-sm font-semibold "
+            >
               Deposit
             </Button>
           </div>
@@ -69,7 +71,9 @@ const Deposit = () => {
               result in the loss of your funds!
             </p>
           </div>
-          <div><button></button></div>
+          <div>
+            <button></button>
+          </div>
         </>
       )}
     </div>

@@ -1,3 +1,4 @@
+import "./App.css";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
@@ -13,10 +14,25 @@ import MyOrders from "./Pages/MyOrders";
 import Support from "./Pages/Support";
 import USBanks from "./Pages/USBanks";
 import UKBanks from "./Pages/UKBanks";
+import { getCurrentUser } from "./utils/index";
+import CanadaBanks from "./Pages/CanadaBanks";
 
 const App = () => {
   const location = useLocation();
-  const currentUser = JSON.parse(localStorage.getItem("user") || "{}");
+  const [currentUser, setCurrentUser] = useState({});
+
+  const getLoggedInUser = async () => {
+    try {
+      const user = await getCurrentUser();
+      setCurrentUser(user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getLoggedInUser();
+  }, []);
 
   return (
     <>
@@ -47,13 +63,18 @@ const App = () => {
         />
         <Route
           index
-          path="/usbanks"
+          path="/banks/us"
           element={currentUser ? <USBanks /> : <Navigate to="/login" />}
         />
         <Route
           index
-          path="/ukbanks"
+          path="/banks/uk"
           element={currentUser ? <UKBanks /> : <Navigate to="/login" />}
+        />
+        <Route
+          index
+          path="/banks/canada"
+          element={currentUser ? <CanadaBanks /> : <Navigate to="/login" />}
         />
         <Route
           index
