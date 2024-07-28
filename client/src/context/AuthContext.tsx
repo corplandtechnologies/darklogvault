@@ -1,22 +1,31 @@
 import { getCurrentUser } from "@/utils";
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-const AuthContext = createContext();
+interface ApiResponse {
+  data: any;
+  wallet: any;
+  username: any;
+  user: any;
+}
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+const AuthContext = createContext<{
+  currentUser: ApiResponse | null;
+  setCurrentUser: React.Dispatch<React.SetStateAction<ApiResponse | null>>;
+}>({
+  currentUser: null,
+  setCurrentUser: () => {},
+});
+
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [currentUser, setCurrentUser] = useState<ApiResponse | null>(null);
+  console.log(currentUser);
 
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
-        const user = await getCurrentUser();
-        setCurrentUser(user);
+        const user: ApiResponse | null =
+          (await getCurrentUser()) as ApiResponse | null;
+        setCurrentUser(user); // Now correctly accounts for ApiResponse or null        setCurrentUser(user);
       } catch (error) {
         console.error("Failed to fetch current user:", error);
       }

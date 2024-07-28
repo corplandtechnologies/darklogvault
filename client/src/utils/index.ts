@@ -18,7 +18,7 @@ export const getCurrentUser = async (): Promise<ApiResponse | null> => {
       user = JSON.parse(userData);
       if (user) {
         const currentUserResponse: ApiResponse = await getUserById(user._id);
-        return currentUserResponse;
+        return currentUserResponse.data;
       } else {
         console.error("User object is null.");
         return null; // Indicate failure to retrieve user data

@@ -23,11 +23,15 @@ interface ApiResponse {
 
 const App = () => {
   const location = useLocation();
-  const [currentUser, setCurrentUser] = useState<ApiResponse | null>(null);
+  const [currentUser, setCurrentUser] = useState<ApiResponse | null>(() => {
+    const userFromStorage = localStorage.getItem("user");
+    return userFromStorage ? JSON.parse(userFromStorage) : null;
+  });
 
   const getLoggedInUser = async () => {
     try {
       const user = await getCurrentUser();
+
       setCurrentUser(user);
     } catch (error) {
       console.log(error);
