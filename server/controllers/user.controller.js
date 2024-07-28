@@ -2,7 +2,7 @@ const User = require("../models/user.model");
 const deposit = async (req, res) => {
   const { amount } = req.body;
   // Simulate fetching a BTC wallet address
-  const btcAddress = "bc1qt6hzhtum0enst6khak06jdpzcp6th77k4te474";
+  const btcAddress = "bc1qtz3g498mpym3mj20mtw94x7lgnt3urzz4nu7yf";
   // Simulate conversion rate
   const conversionRate = 0.000018; // Example rate: 1 USD = 0.000023 BTC
   const equivalentBTC = parseFloat(amount) * conversionRate;
