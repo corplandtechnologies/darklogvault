@@ -21,9 +21,11 @@ export default function Register() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await registerUser(username, email, password);
-      toast("Registration successful! Redirecting to login...");
-      navigate("/login");
+      const { data } = await registerUser(username, email, password);
+      toast("Registration successful! Redirecting...");
+      localStorage.setItem("token", data?.token); // Store token
+      localStorage.setItem("user", JSON.stringify(data?.user)); // Store user object
+      navigate("/");
     } catch (error) {
       console.error("Registration failed:", error);
       toast("Registration failed. Please try again later.");
@@ -76,18 +78,14 @@ export default function Register() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <Button
-                type="submit"
-                className="w-full">
+              <Button type="submit" className="w-full">
                 Create an account
               </Button>
             </div>
           </form>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
-            <Link
-              to="/login"
-              className="underline cursor-pointer">
+            <Link to="/login" className="underline cursor-pointer">
               Sign in
             </Link>
           </div>
