@@ -17,9 +17,13 @@ import UKBanks from "./Pages/UKBanks";
 import { getCurrentUser } from "./utils/index";
 import CanadaBanks from "./Pages/CanadaBanks";
 
+interface ApiResponse {
+  data: any;
+}
+
 const App = () => {
   const location = useLocation();
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState<ApiResponse | null>(null);
 
   const getLoggedInUser = async () => {
     try {
