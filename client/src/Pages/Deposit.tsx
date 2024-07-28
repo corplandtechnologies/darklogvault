@@ -18,8 +18,8 @@ const Deposit = () => {
     e.preventDefault();
     const inputElement = document.querySelector('input[name="amount"]');
     if (!inputElement) {
-        console.error('Input element not found');
-        return;
+      console.error("Input element not found");
+      return;
     }
     // Asserting the type to HTMLInputElement to access the value property
     const amount = (inputElement as HTMLInputElement).value;
@@ -72,11 +72,11 @@ const Deposit = () => {
             <img
               src={response.qrCodeURL}
               alt="QR Code"
-              className="w-1/2 flex self-center"
+              className="w-1/2 flex self-center md:w-56"
             />
             <p className="font-semibold text-lg">
               Time Left:
-              <p className="text-sm">{response.timeLeft} minutes</p>{" "}
+              <p className="text-sm">{response.timeLeft} minutes</p>
             </p>
             <p className="font-extrabold">{response.message}</p>
             <p className="text-red-500 font-extrabold">
@@ -84,9 +84,6 @@ const Deposit = () => {
               Sending any coins or tokens other than BTC to this Address might
               result in the loss of your funds!
             </p>
-          </div>
-          <div>
-            <button></button>
           </div>
         </>
       )}

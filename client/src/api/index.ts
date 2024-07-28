@@ -39,3 +39,19 @@ export const deposit = (amount: number) => {
 };
 
 export const getUserById = (id: string) => API.get(`/users/${id}`);
+
+export const createOrder = (
+  balance: string,
+  type: string,
+  userId: string,
+  price: any
+) => {
+  return API.post("/orders", {
+    balance: balance,
+    type: type,
+    userId: userId,
+    price: price,
+  });
+};
+
+export const getUserOrders = (userId: string) => API.get(`/orders/${userId}`);

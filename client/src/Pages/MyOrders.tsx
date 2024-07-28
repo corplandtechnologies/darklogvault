@@ -1,3 +1,6 @@
+import { getUserOrders } from "@/api";
+import { PaymentDialog } from "@/components/PaymentDialog";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
@@ -7,8 +10,32 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useAuth } from "@/context/AuthContext";
+import { useEffect, useState } from "react";
 
 export default function MyOrders() {
+  const [orders, setOrders] = useState([]);
+  const { currentUser } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      setIsLoading(true);
+      try {
+        const { data } = await getUserOrders(currentUser?._id);
+        console.log(data);
+        setIsLoading(false);
+        setOrders(data);
+      } catch (error) {
+        console.error("Order failed:", error);
+        setIsLoading(false);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchOrders();
+  }, [currentUser]);
+
   return (
     <Card>
       <CardHeader>
@@ -22,16 +49,75 @@ export default function MyOrders() {
             <TableRow>
               <TableHead>BALANCE</TableHead>
               <TableHead>TYPE</TableHead>
-              <TableHead>EXTRACTION PRICE</TableHead>
-              <TableHead>EXTRACT</TableHead>
+              {orders.length > 0 && (
+                <>
+                  <TableHead>EXTRACTION PRICE</TableHead>
+                  <TableHead>EXTRACT</TableHead>
+                </>
+              )}
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell className="text-center font-bold text-2xl" colSpan={4}>
-                No orders yet
-              </TableCell>
-            </TableRow>
+            {!isLoading ? (
+              <>
+                {orders.length > 0 ? (
+                  <>
+                    {orders?.map(
+                      ({
+                        _id,
+                        balance,
+                        type,
+                        extractionPrice,
+                        isExtracted,
+                      }) => (
+                        <TableRow key={_id}>
+                          <TableCell>{balance}</TableCell>
+                          <TableCell>{type}</TableCell>
+                          <TableCell>
+                            ${Number(extractionPrice).toFixed(2)}
+                          </TableCell>
+                          <TableCell>
+                            {isExtracted ? (
+                              <>
+                                <Button disabled={isLoading}>
+                                  {isLoading ? "Loading..." : " Extracted"}
+                                </Button>
+                              </>
+                            ) : (
+                              <>
+                                <PaymentDialog />
+                              </>
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      )
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <TableRow>
+                      <TableCell
+                        className="text-center font-bold text-2xl"
+                        colSpan={4}
+                      >
+                        No orders yet
+                      </TableCell>
+                    </TableRow>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                <TableRow>
+                  <TableCell
+                    className="text-center font-bold text-2xl"
+                    colSpan={4}
+                  >
+                    Loading...
+                  </TableCell>
+                </TableRow>
+              </>
+            )}
           </TableBody>
         </Table>
       </CardContent>

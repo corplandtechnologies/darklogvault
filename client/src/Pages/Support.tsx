@@ -10,7 +10,9 @@ const Support = () => {
       <div>
         <h2 className="font-bold text-2xl mb-5">Telegram</h2>
         <p>Contact our Telegram support for real-time help and updates:</p>
-        <Button className="mt-5">Telegram Support</Button>
+        <a href="https://t.me/darklogvaultsupport">
+          <Button className="mt-5">Telegram Support</Button>
+        </a>
       </div>
     </div>
   );

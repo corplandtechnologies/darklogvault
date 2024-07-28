@@ -6,6 +6,7 @@ interface ApiResponse {
   wallet: any;
   username: any;
   user: any;
+  _id: any;
 }
 
 const AuthContext = createContext<{
@@ -18,14 +19,13 @@ const AuthContext = createContext<{
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentUser, setCurrentUser] = useState<ApiResponse | null>(null);
-  console.log(currentUser);
 
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
         const user: ApiResponse | null =
           (await getCurrentUser()) as ApiResponse | null;
-        setCurrentUser(user); // Now correctly accounts for ApiResponse or null        setCurrentUser(user);
+        setCurrentUser(user);
       } catch (error) {
         console.error("Failed to fetch current user:", error);
       }

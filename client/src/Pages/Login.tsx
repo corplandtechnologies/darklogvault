@@ -18,19 +18,19 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  try {
-    const { data } = await loginUser(email, password); // Assuming the API call returns a response with a data property containing user and token
-    toast("Login successful! Redirecting...");
-    localStorage.setItem("token", data?.token); // Store token
-    localStorage.setItem("user", JSON.stringify(data?.user)); // Store user object
-    navigate("/");
-  } catch (error) {
-    console.error("Login failed:", error);
-    toast("Login failed. Please check your credentials.");
-  }
-};
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const { data } = await loginUser(email, password); // Assuming the API call returns a response with a data property containing user and token
+      toast.success("Login successful! Redirecting...");
+      localStorage.setItem("token", data?.token); // Store token
+      localStorage.setItem("user", JSON.stringify(data?.user)); // Store user object
+      navigate("/");
+    } catch (error) {
+      console.error("Login failed:", error);
+      toast.error("Login failed. Please check your credentials.");
+    }
+  };
   return (
     <div className="flex flex-col justify-center items-center h-[100vh] bg-login">
       <Card className="mx-auto max-w-sm">
@@ -66,18 +66,14 @@ const handleSubmit = async (e: React.FormEvent) => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <Button
-                type="submit"
-                className="w-full">
+              <Button type="submit" className="w-full">
                 Login
               </Button>
             </div>
           </form>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <Link
-              to="/register"
-              className="underline cursor-pointer">
+            <Link to="/register" className="underline cursor-pointer">
               Sign up
             </Link>
           </div>

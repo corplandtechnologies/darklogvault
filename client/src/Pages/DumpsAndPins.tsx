@@ -1,3 +1,4 @@
+import { createOrder } from "@/api";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,17 +15,61 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useAuth } from "@/context/AuthContext";
 import { dumpsAndPinsData } from "@/data";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function DumpsAndPins() {
+  const navigate = useNavigate();
+  const { currentUser } = useAuth();
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const itemsPerPage = 10;
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
   const currentPageItems = dumpsAndPinsData.slice(startIndex, endIndex);
+
+  const handleOrder = async (id: number) => {
+    // Set loading to true before starting any asynchronous operation
+    setIsLoading(true);
+
+    try {
+      const selectedItem = dumpsAndPinsData.find((item) => item.id === id);
+      if (!selectedItem) {
+        throw new Error("Item not found");
+      }
+
+      if (selectedItem.price > currentUser?.wallet) {
+        toast.error("Insufficient balance! Please make a deposit.");
+        navigate("/deposit");
+        return;
+      }
+
+      const { data } = await createOrder(
+        selectedItem.balance,
+        selectedItem.description,
+        currentUser?._id,
+        selectedItem.price
+      );
+
+      if (data) {
+        setIsLoading(false); // Ensure this is outside the try block but still within the success path
+        toast.success("Order successful!");
+        navigate("/orders");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("Order failed:", error);
+      toast.error("Order failed. Please check your selection.");
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Card>
@@ -46,9 +91,16 @@ export default function DumpsAndPins() {
               <TableRow key={id}>
                 <TableCell>{balance}</TableCell>
                 <TableCell>{description}</TableCell>
-                <TableCell>{price}</TableCell>
+                <TableCell>${Number(price).toFixed(2)}</TableCell>
                 <TableCell>
-                  <Button>Buy now</Button>
+                  <Button
+                    onClick={() => {
+                      handleOrder(id);
+                    }}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Loading..." : " Buy now"}
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
