@@ -5,6 +5,7 @@ const createOrder = async (req, res) => {
     const newOrder = new Order({
       balance: req.body.balance,
       type: req.body.type,
+      ...req.body,
     });
 
     await newOrder.save();
@@ -12,3 +13,5 @@ const createOrder = async (req, res) => {
     console.log(error);
   }
 };
+
+module.exports = { createOrder };

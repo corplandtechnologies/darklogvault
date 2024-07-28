@@ -5,6 +5,23 @@ export const API = axios.create({
   withCredentials: true,
 });
 
+const getToken = async () => {
+  return localStorage.getItem("token");
+};
+
+API.interceptors.request.use(
+  async (config) => {
+    const token = await getToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 export const registerUser = (
   username: string,
   email: string,
