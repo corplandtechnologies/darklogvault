@@ -3,12 +3,26 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FormEvent, useState } from "react";
 
+interface ResponseData {
+  btcAddress: string;
+  equivalentBTC: string;
+  qrCodeURL: string;
+  timeLeft: number;
+  message: string;
+}
+
 const Deposit = () => {
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState<ResponseData | null>(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const amount: any = document.querySelector('input[name="amount"]').value;
+    const inputElement = document.querySelector('input[name="amount"]');
+    if (!inputElement) {
+        console.error('Input element not found');
+        return;
+    }
+    // Asserting the type to HTMLInputElement to access the value property
+    const amount = (inputElement as HTMLInputElement).value;
     try {
       const result = await deposit(parseFloat(amount));
       setResponse(result.data);

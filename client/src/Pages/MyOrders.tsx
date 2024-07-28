@@ -1,11 +1,4 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -29,11 +22,13 @@ export default function MyOrders() {
             <TableRow>
               <TableHead>BALANCE</TableHead>
               <TableHead>TYPE</TableHead>
+              <TableHead>EXTRACTION PRICE</TableHead>
+              <TableHead>EXTRACT</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             <TableRow>
-              <TableCell className="text-center font-bold text-2xl" colSpan={2}>
+              <TableCell className="text-center font-bold text-2xl" colSpan={4}>
                 No orders yet
               </TableCell>
             </TableRow>
