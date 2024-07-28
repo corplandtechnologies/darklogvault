@@ -13,7 +13,7 @@ export default function Dashboard() {
     <Card>
       <CardHeader>
         <CardTitle>
-          <CardTitle>My Orders</CardTitle>
+          <CardTitle>Dashboard</CardTitle>
         </CardTitle>
       </CardHeader>
       <CardContent>
