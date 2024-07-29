@@ -270,9 +270,9 @@ const generateRandomLog = (id: any, type: string) => {
     description:
       descriptions[type][Math.floor(Math.random() * descriptions[type].length)],
     price: parseFloat(
-      (
+      Math.round(
         Math.random() * (priceRange[type][1] - priceRange[type][0]) +
-        priceRange[type][0]
+          priceRange[type][0]
       ).toFixed(2)
     ),
   };
