@@ -50,8 +50,8 @@ const App = () => {
       )}
       <Routes>
         {/* Public routes */}
-        <Route index path="/register" element={<Register />} />
-        <Route index path="/login" element={<Login />} />
+        <Route  path="/register" element={<Register />} />
+        <Route  path="/login" element={<Login />} />
 
         {/* Protected routes */}
         <Route
@@ -60,52 +60,42 @@ const App = () => {
           element={currentUser ? <Dashboard /> : <Navigate to="/login" />}
         />
         <Route
-          index
           path="/deposit"
           element={currentUser ? <Deposit /> : <Navigate to="/login" />}
         />
         <Route
-          index
           path="/dumps"
           element={currentUser ? <DumpsAndPins /> : <Navigate to="/login" />}
         />
         <Route
-          index
           path="/banks/us"
           element={currentUser ? <USBanks /> : <Navigate to="/login" />}
         />
         <Route
-          index
           path="/banks/uk"
           element={currentUser ? <UKBanks /> : <Navigate to="/login" />}
         />
         <Route
-          index
           path="/banks/canada"
           element={currentUser ? <CanadaBanks /> : <Navigate to="/login" />}
         />
         <Route
-          index
           path="/cashapp"
           element={currentUser ? <CashApp /> : <Navigate to="/login" />}
         />
         <Route
-          index
           path="/paypal"
           element={currentUser ? <Paypal /> : <Navigate to="/login" />}
         />
         <Route
-          index
           path="/orders"
           element={currentUser ? <MyOrders /> : <Navigate to="/login" />}
         />
         <Route
-          index
           path="/orders"
           element={currentUser ? <MyOrders /> : <Navigate to="/login" />}
         />
         <Route
-          index
           path="/support"
           element={currentUser ? <Support /> : <Navigate to="/login" />}
         />
