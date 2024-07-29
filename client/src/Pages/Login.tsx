@@ -80,7 +80,7 @@ export default function Login() {
                 />
               </div>
               <Button disabled={isLoading} type="submit" className="w-full">
-                {isLoading ? "Loading..." : "Login"}
+                {isLoading ? "Logging in..." : "Login"}
               </Button>
             </div>
           </form>
