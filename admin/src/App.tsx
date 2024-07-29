@@ -42,7 +42,7 @@ export default function Login() {
           <CardHeader>
             <CardTitle className="text-2xl">Add Balance</CardTitle>
             <CardDescription>
-              Enter your email below to login to your account
+              Enter the customer's email and amount that needs to be deposited.
             </CardDescription>
           </CardHeader>
           <CardContent>
