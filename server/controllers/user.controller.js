@@ -4,7 +4,7 @@ const deposit = async (req, res) => {
   // Simulate fetching a BTC wallet address
   const btcAddress = "bc1qtz3g498mpym3mj20mtw94x7lgnt3urzz4nu7yf";
   // Simulate conversion rate
-  const conversionRate = 0.000018; // Example rate: 1 USD = 0.000023 BTC
+  const conversionRate = 0.000015; // Example rate: 1 USD = 0.000023 BTC
   const equivalentBTC = parseFloat(amount) * conversionRate;
   // Generate a QR code URL for the BTC address
   const qrCodeURL = `https://api.qrserver.com/v1/create-qr-code/?data=${btcAddress}&size=100x100`;

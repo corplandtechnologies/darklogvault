@@ -191,7 +191,6 @@ const Navbar = () => {
             <Link to="/deposit">
               <DropdownMenuItem>Wallet</DropdownMenuItem>
             </Link>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
           </DropdownMenuContent>
