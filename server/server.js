@@ -18,6 +18,8 @@ app.use(
       "https://darklogvaultapp.onrender.com",
       "http://localhost:5173",
       "https://darklogvaultadmin.onrender.com",
+      "https://www.darklogsvault.com",
+      "https://darklogsvault.com",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
