@@ -17,7 +17,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useAuth } from "@/context/AuthContext";
-import { canadaBanks, canadaBanksData } from "@/data";
+import { canadaBanks, canadaBanksLogs } from "@/data";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,7 @@ export default function CanadaBanks() {
   const { currentUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
-  const filteredData = canadaBanksData.filter(
+  const filteredData = canadaBanksLogs.filter(
     (item) => item.bankName === selectedBank || selectedBank === ""
   );
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -96,7 +96,7 @@ export default function CanadaBanks() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredData.map(
+            {currentPageItems.map(
               ({
                 id,
                 bankName,

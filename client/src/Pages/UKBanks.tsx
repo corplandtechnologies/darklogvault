@@ -17,7 +17,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useAuth } from "@/context/AuthContext";
-import { ukBanks, ukBanksData } from "@/data";
+import { ukBanks, ukBanksLogs } from "@/data";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,7 @@ export default function UKBanks() {
   const { currentUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
-  const filteredData = ukBanksData.filter(
+  const filteredData = ukBanksLogs.filter(
     (item) => item.bankName === selectedBank || selectedBank === ""
   );
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -96,7 +96,7 @@ export default function UKBanks() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredData.map(
+            {currentPageItems.map(
               ({
                 id,
                 bankName,
@@ -151,7 +151,7 @@ export default function UKBanks() {
           <Button
             onClick={() => setCurrentPage(currentPage + 1)}
             disabled={
-              currentPage === Math.ceil(ukBanksData.length / itemsPerPage)
+              currentPage === Math.ceil(ukBanksLogs.length / itemsPerPage)
             }
           >
             {">"}

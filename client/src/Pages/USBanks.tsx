@@ -17,7 +17,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useAuth } from "@/context/AuthContext";
-import { usbanks, usBanksData } from "@/data";
+import { usbanks, usbanksLogs } from "@/data";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,7 @@ export default function USBanks() {
   const { currentUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
-  const filteredData = usBanksData.filter(
+  const filteredData = usbanksLogs.filter(
     (item) => item.bankName === selectedBank || selectedBank === ""
   );
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -97,7 +97,7 @@ export default function USBanks() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredData.map(
+            {currentPageItems.map(
               ({
                 id,
                 bankName,
@@ -152,7 +152,7 @@ export default function USBanks() {
           <Button
             onClick={() => setCurrentPage(currentPage + 1)}
             disabled={
-              currentPage === Math.ceil(usBanksData.length / itemsPerPage)
+              currentPage === Math.ceil(usbanksLogs.length / itemsPerPage)
             }
           >
             {">"}

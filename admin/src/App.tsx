@@ -16,7 +16,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState<any>("");
   const [isLoading, setIsLoading] = useState(false);
-  console.log(amount, email);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

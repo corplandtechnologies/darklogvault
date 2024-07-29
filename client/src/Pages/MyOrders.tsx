@@ -23,7 +23,6 @@ export default function MyOrders() {
       setIsLoading(true);
       try {
         const { data } = await getUserOrders(currentUser?._id);
-        console.log(data);
         setIsLoading(false);
         setOrders(data);
       } catch (error) {
