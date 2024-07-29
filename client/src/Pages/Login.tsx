@@ -22,13 +22,16 @@ export default function Login() {
     e.preventDefault();
     try {
       const { data } = await loginUser(email, password); // Assuming the API call returns a response with a data property containing user and token
-      toast.success("Login successful! Redirecting...");
-      localStorage.setItem("token", data?.token); // Store token
-      localStorage.setItem("user", JSON.stringify(data?.user)); // Store user object
-      navigate("/");
+      if (data) {
+        toast.success("Login successful! Redirecting...");
+        localStorage.setItem("token", data?.token); // Store token
+        localStorage.setItem("user", JSON.stringify(data?.user)); // Store user object
+        navigate("/");
+      }
     } catch (error) {
       console.error("Login failed:", error);
-      toast.error("Login failed. Please check your credentials.");
+      const { message }: any = error;
+      toast.error(message || "Login failed. Please check your credentials.");
     }
   };
   return (

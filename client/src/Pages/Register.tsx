@@ -22,13 +22,16 @@ export default function Register() {
     e.preventDefault();
     try {
       const { data } = await registerUser(username, email, password);
-      toast.success("Registration successful! Redirecting...");
-      localStorage.setItem("token", data?.token); // Store token
-      localStorage.setItem("user", JSON.stringify(data?.user)); // Store user object
-      navigate("/");
+      if (data) {
+        toast.success("Registration successful! Redirecting...");
+        localStorage.setItem("token", data?.token); // Store token
+        localStorage.setItem("user", JSON.stringify(data?.user)); // Store user object
+        navigate("/");
+      }
     } catch (error) {
       console.error("Registration failed:", error);
-      toast.error("Registration failed. Please try again later.");
+      const { message }: any = error;
+      toast.error(message || "Registration failed. Please try again later.");
     }
   };
 
