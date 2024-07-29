@@ -30,8 +30,10 @@ export default function Login() {
       }
     } catch (error) {
       console.error("Login failed:", error);
-      const { message }: any = error;
-      toast.error(message || "Login failed. Please check your credentials.");
+      const { data }: any = error;
+      toast.error(
+        data.message || "Login failed. Please check your credentials."
+      );
     }
   };
   return (

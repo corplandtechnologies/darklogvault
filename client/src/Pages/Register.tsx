@@ -30,8 +30,8 @@ export default function Register() {
       }
     } catch (error) {
       console.error("Registration failed:", error);
-      const { message }: any = error;
-      toast.error(message || "Registration failed. Please try again later.");
+      const { data }: any = error;
+      toast.error(data.message || "Registration failed. Please try again later.");
     }
   };
 
