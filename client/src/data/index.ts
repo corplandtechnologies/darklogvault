@@ -225,7 +225,7 @@ function generateBankLogs(bankArray: string[], numberOfLogs: number) {
       Math.floor(Math.random() * 12) + 1
     }/${Math.floor(Math.random() * 40) + 1960}`,
     price: parseFloat(
-      (Math.floor(Math.random() * 2000 + 300) * 1.0).toFixed(2)
+      Math.floor(Math.random() * 601 + 200).toFixed(2) // Adjusted line
     ),
   }));
 }
@@ -269,12 +269,10 @@ const generateRandomLog = (id: any, type: string) => {
     balance,
     description:
       descriptions[type][Math.floor(Math.random() * descriptions[type].length)],
-    price: parseFloat(
-      (
-        Math.random() * (priceRange[type][1] - priceRange[type][0]) +
-        priceRange[type][0]
-      ).toFixed(2)
-    ),
+    price: (
+      Math.random() * (priceRange[type][1] - priceRange[type][0]) +
+      priceRange[type][0]
+    ).toFixed(2),
   };
 };
 
