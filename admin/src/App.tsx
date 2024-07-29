@@ -27,8 +27,9 @@ export default function Login() {
       setIsLoading(false);
       window.location.reload();
     } catch (error) {
-      console.error("Login failed:", error);
-      toast.error("Login failed. Please check your credentials.");
+      const { message }: any = error;
+      console.error("something went wrong!", error);
+      toast.error(message || "Something Went Wrong!");
       setIsLoading(false);
     } finally {
       setIsLoading(false);
