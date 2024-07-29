@@ -234,7 +234,7 @@ export const ukBanksLogs = generateBankLogs(ukBanks, 2435);
 export const usbanksLogs = generateBankLogs(usbanks, 5647);
 export const canadaBanksLogs = generateBankLogs(canadaBanks, 3465);
 
-const generateRandomLog = (id: number | string, type: string) => {
+const generateRandomLog = (id: any, type: string) => {
   const balance = `$${(Math.random() * 100000 + 1000).toFixed(2)}`;
   const descriptions: any = {
     dumpsAndPinsData: [
