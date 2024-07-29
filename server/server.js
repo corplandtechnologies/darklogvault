@@ -14,7 +14,7 @@ const { exec } = require("child_process");
 
 const checkServer = async () => {
   try {
-    await axios.get("http://localhost:8080");
+    await axios.get("https://darklogvault.onrender.com");
     console.log("Server is up and running");
   } catch (error) {
     console.log("Server is down. Restarting...");
