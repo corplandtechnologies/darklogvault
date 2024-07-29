@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     fetchCurrentUser();
-  }, []);
+  }, [currentUser?._id]);
 
   return (
     <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
