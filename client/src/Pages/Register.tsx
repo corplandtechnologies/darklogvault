@@ -28,8 +28,9 @@ export default function Register() {
         toast.success("Registration successful! Redirecting...");
         localStorage.setItem("token", data?.token); // Store token
         localStorage.setItem("user", JSON.stringify(data?.user)); // Store user object
-        navigate("/dashboard");
+        navigate("/");
         setIsLoading(false);
+        window.location.reload();
       }
     } catch (error) {
       console.error("Registration failed:", error);
