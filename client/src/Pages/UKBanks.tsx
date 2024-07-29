@@ -17,7 +17,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useAuth } from "@/context/AuthContext";
-import { ukbanks, ukBanksData } from "@/data";
+import { ukBanks, ukBanksData } from "@/data";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -75,7 +75,7 @@ export default function UKBanks() {
   return (
     <Card>
       <CardHeader>
-        <Filter banks={ukbanks} onBankSelect={setSelectedBank} />
+        <Filter banks={ukBanks} onBankSelect={setSelectedBank} />
         <CardTitle>
           <CardTitle>UK Bank Logs</CardTitle>
         </CardTitle>
