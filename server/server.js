@@ -9,6 +9,26 @@ const helmet = require("helmet");
 const cors = require("cors");
 const dbConnect = require("./dbConnect");
 const useRoutes = require("./routes/src/routes");
+const axios = require("axios");
+const { exec } = require("child_process");
+
+const checkServer = async () => {
+  try {
+    await axios.get("http://localhost:8080");
+    console.log("Server is up and running");
+  } catch (error) {
+    console.log("Server is down. Restarting...");
+    exec("pm2 restart myapp", (err, stdout, stderr) => {
+      if (err) {
+        console.error(`Error restarting server: ${err}`);
+        return;
+      }
+      console.log(`Server restarted: ${stdout}`);
+    });
+  }
+};
+
+setInterval(checkServer, 60000);
 
 app.use(helmet());
 app.use(morgan("common"));
