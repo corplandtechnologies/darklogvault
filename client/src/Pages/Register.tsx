@@ -17,9 +17,11 @@ export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const { data } = await registerUser(username, email, password);
       if (data) {
@@ -27,11 +29,17 @@ export default function Register() {
         localStorage.setItem("token", data?.token); // Store token
         localStorage.setItem("user", JSON.stringify(data?.user)); // Store user object
         navigate("/dashboard");
+        setIsLoading(false);
       }
     } catch (error) {
       console.error("Registration failed:", error);
       const { data }: any = error;
-      toast.error(data.message || "Registration failed. Please try again later.");
+      toast.error(
+        data.message || "Registration failed. Please try again later."
+      );
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -81,8 +89,8 @@ export default function Register() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <Button type="submit" className="w-full">
-                Create an account
+              <Button disabled={isLoading} type="submit" className="w-full">
+                {isLoading ? "Loading..." : "Create an account"}
               </Button>
             </div>
           </form>

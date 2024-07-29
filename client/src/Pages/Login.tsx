@@ -16,10 +16,13 @@ import toast from "react-hot-toast";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const { data } = await loginUser(email, password); // Assuming the API call returns a response with a data property containing user and token
       if (data) {
@@ -27,6 +30,7 @@ export default function Login() {
         localStorage.setItem("token", data?.token); // Store token
         localStorage.setItem("user", JSON.stringify(data?.user)); // Store user object
         navigate("/dashboard");
+        setIsLoading(false);
       }
     } catch (error) {
       console.error("Login failed:", error);
@@ -34,6 +38,9 @@ export default function Login() {
       toast.error(
         data.message || "Login failed. Please check your credentials."
       );
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -71,8 +78,8 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <Button type="submit" className="w-full">
-                Login
+              <Button disabled={isLoading} type="submit" className="w-full">
+                {isLoading ? "Loading..." : "Login"}
               </Button>
             </div>
           </form>
