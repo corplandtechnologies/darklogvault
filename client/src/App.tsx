@@ -55,8 +55,8 @@ const App = () => {
         {/* Protected routes */}
         <Route
           index
-          path="/dashboard"
-          element={currentUser ? <Dashboard /> : <Navigate to="/login" />}
+          path="/"
+          element={currentUser ? <Dashboard /> : <Login />}
         />
         <Route
           index
