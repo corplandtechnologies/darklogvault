@@ -28,6 +28,7 @@ const App = () => {
     return userFromStorage ? JSON.parse(userFromStorage) : null;
   });
 
+
   const getLoggedInUser = async () => {
     try {
       const user = await getCurrentUser();
@@ -56,7 +57,7 @@ const App = () => {
         <Route
           index
           path="/"
-          element={currentUser ? <Dashboard /> : <Login />}
+          element={currentUser ? <Dashboard /> : <Navigate to="/login" />}
         />
         <Route
           index
