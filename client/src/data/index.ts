@@ -269,10 +269,12 @@ const generateRandomLog = (id: any, type: string) => {
     balance,
     description:
       descriptions[type][Math.floor(Math.random() * descriptions[type].length)],
-    price: (
-      Math.random() * (priceRange[type][1] - priceRange[type][0]) +
-      priceRange[type][0]
-    ).toFixed(2),
+    price: parseFloat(
+      (
+        Math.random() * (priceRange[type][1] - priceRange[type][0]) +
+        priceRange[type][0]
+      ).toFixed(2)
+    ),
   };
 };
 
