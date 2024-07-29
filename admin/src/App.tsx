@@ -71,7 +71,7 @@ export default function Login() {
                     onChange={(e) => setAmount(Number(e.target.value))}
                   />
                 </div>
-                <Button type="submit" className="w-full">
+                <Button disabled={isLoading} type="submit" className="w-full">
                   {isLoading ? "Loading..." : "Submit"}
                 </Button>
               </div>
