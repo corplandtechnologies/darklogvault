@@ -1,35 +1,84 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { Input } from "./components/ui/input";
+import { Label } from "./components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./components/ui/card";
+import { Button } from "./components/ui/button";
+import { addBalance } from "./api";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [amount, setAmount] = useState<any>("");
+  const [isLoading, setIsLoading] = useState(false);
+  console.log(amount, email);
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      await addBalance(email, amount);
+      toast.success("Balance Added successfully!");
+      setIsLoading(false);
+      window.location.reload();
+    } catch (error) {
+      console.error("Login failed:", error);
+      toast.error("Login failed. Please check your credentials.");
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <Toaster />
+      <div className="flex flex-col justify-center items-center h-[100vh] bg-login">
+        <Card className="mx-auto max-w-sm">
+          <CardHeader>
+            <CardTitle className="text-2xl">Add Balance</CardTitle>
+            <CardDescription>
+              Enter your email below to login to your account
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit}>
+              <div className="grid gap-4">
+                {/* Email Input */}
+                <div className="grid gap-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="m@example.com"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                {/* Password Input */}
+                <div className="grid gap-2">
+                  <Label htmlFor="password">Amount</Label>
+                  <Input
+                    id="amount"
+                    type="number"
+                    required
+                    value={amount}
+                    onChange={(e) => setAmount(Number(e.target.value))}
+                  />
+                </div>
+                <Button type="submit" className="w-full">
+                  {isLoading ? "Loading..." : "Submit"}
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
-
-export default App

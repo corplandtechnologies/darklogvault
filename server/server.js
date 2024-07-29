@@ -14,7 +14,7 @@ app.use(helmet());
 app.use(morgan("common"));
 app.use(
   cors({
-    origin: "https://darklogvaultapp.onrender.com",
+    origin: ["https://darklogvaultapp.onrender.com", "http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
