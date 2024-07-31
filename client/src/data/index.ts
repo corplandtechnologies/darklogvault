@@ -200,7 +200,7 @@ export const canadaBanks = [
   "Vancity Community Investment Bank",
 ];
 
-function generateBankLogs(bankArray: string[], numberOfLogs: number) {
+function generateBankLogs(bankArray: any, numberOfLogs: any) {
   return Array.from({ length: numberOfLogs }, (_, index) => ({
     id: index + 1,
     bankName: bankArray[Math.floor(Math.random() * bankArray.length)],
@@ -224,17 +224,21 @@ function generateBankLogs(bankArray: string[], numberOfLogs: number) {
     dob: `${Math.floor(Math.random() * 31) + 1}/${
       Math.floor(Math.random() * 12) + 1
     }/${Math.floor(Math.random() * 40) + 1960}`,
-    price: parseFloat(
-      Math.floor(Math.random() * 601 + 200).toFixed(2) // Adjusted line
-    ),
+    price: generateWeightedPrice(200, 500), // Adjusted line
   }));
+}
+
+function generateWeightedPrice(min: any, max: any) {
+  const randomValue = Math.random();
+  const weight = 0.7; // Adjust this value to control the weighting
+  return randomValue ** weight * (max - min) + min;
 }
 
 export const ukBanksLogs = generateBankLogs(ukBanks, 2435);
 export const usbanksLogs = generateBankLogs(usbanks, 5647);
 export const canadaBanksLogs = generateBankLogs(canadaBanks, 3465);
 
-const generateRandomLog = (id: any, type: string) => {
+const generateRandomLog = (id: any, type: any) => {
   const balance = `$${(Math.random() * 100000 + 1000).toFixed(2)}`;
   const descriptions: any = {
     dumpsAndPinsData: [
@@ -278,7 +282,7 @@ const generateRandomLog = (id: any, type: string) => {
   };
 };
 
-const generateLogs = (type: string, count: number) => {
+const generateLogs = (type: any, count: any) => {
   return Array.from({ length: count }, (_, index) =>
     generateRandomLog(index + 1, type)
   );
