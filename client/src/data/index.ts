@@ -199,39 +199,47 @@ export const canadaBanks = [
   "AMEX Bank of Canada",
   "Vancity Community Investment Bank",
 ];
-
 function generateBankLogs(bankArray: any, numberOfLogs: any) {
-  return Array.from({ length: numberOfLogs }, (_, index) => ({
-    id: index + 1,
-    bankName: bankArray[Math.floor(Math.random() * bankArray.length)],
-    balance: `$${(Math.random() * 20000 + 1000).toFixed(2)}`,
-    type: ["Saving", "Checking", "Saving + Checking"][
-      Math.floor(Math.random() * 3)
-    ],
-    info: [
-      "Bank",
-      "Mail Access",
-      "Billing",
-      "Bank + Mail Access",
-      "Bank + Billing",
-      "Mail Access + Billing",
-      "Bank + Mail Access + Billing",
-    ][Math.floor(Math.random() * 7)],
-    state: ["CA", "TX", "NY", "FL", "IL", "NV", "WA", "OR", "CO", "KS"][
-      Math.floor(Math.random() * 10)
-    ],
-    gender: ["Male", "Female"][Math.floor(Math.random() * 2)],
-    dob: `${Math.floor(Math.random() * 31) + 1}/${
-      Math.floor(Math.random() * 12) + 1
-    }/${Math.floor(Math.random() * 40) + 1960}`,
-    price: generateWeightedPrice(200, 500), // Adjusted line
-  }));
+  return Array.from({ length: numberOfLogs }, (_, index) => {
+    const balance = parseFloat((Math.random() * 20000 + 1000).toFixed(2));
+    const price = generateWeightedPrice(200, 500, balance, 1000, 21000);
+    return {
+      id: index + 1,
+      bankName: bankArray[Math.floor(Math.random() * bankArray.length)],
+      balance: `$${balance.toFixed(2)}`,
+      type: ["Saving", "Checking", "Saving + Checking"][
+        Math.floor(Math.random() * 3)
+      ],
+      info: [
+        "Bank",
+        "Mail Access",
+        "Billing",
+        "Bank + Mail Access",
+        "Bank + Billing",
+        "Mail Access + Billing",
+        "Bank + Mail Access + Billing",
+      ][Math.floor(Math.random() * 7)],
+      state: ["CA", "TX", "NY", "FL", "IL", "NV", "WA", "OR", "CO", "KS"][
+        Math.floor(Math.random() * 10)
+      ],
+      gender: ["Male", "Female"][Math.floor(Math.random() * 2)],
+      dob: `${Math.floor(Math.random() * 31) + 1}/${
+        Math.floor(Math.random() * 12) + 1
+      }/${Math.floor(Math.random() * 40) + 1960}`,
+      price: Math.round(price),
+    };
+  });
 }
 
-function generateWeightedPrice(min: any, max: any) {
-  const randomValue = Math.random();
-  const weight = 0.7; // Adjust this value to control the weighting
-  return randomValue ** weight * (max - min) + min;
+function generateWeightedPrice(
+  min: any,
+  max: any,
+  balance: any,
+  minBalance: any,
+  maxBalance: any
+) {
+  const balanceRatio = (balance - minBalance) / (maxBalance - minBalance);
+  return balanceRatio * (max - min) + min;
 }
 
 export const ukBanksLogs = generateBankLogs(ukBanks, 2435);
@@ -239,7 +247,7 @@ export const usbanksLogs = generateBankLogs(usbanks, 5647);
 export const canadaBanksLogs = generateBankLogs(canadaBanks, 3465);
 
 const generateRandomLog = (id: any, type: any) => {
-  const balance = `$${(Math.random() * 100000 + 1000).toFixed(2)}`;
+  const balance = parseFloat((Math.random() * 100000 + 1000).toFixed(2));
   const descriptions: any = {
     dumpsAndPinsData: [
       "Missouri, US, Track 2, Pin, Address",
@@ -268,17 +276,20 @@ const generateRandomLog = (id: any, type: any) => {
     paypalData: [200, 500],
   };
 
+  const price = generateWeightedPrice(
+    priceRange[type][0],
+    priceRange[type][1],
+    balance,
+    1000,
+    101000
+  );
+
   return {
     id,
-    balance,
+    balance: `$${balance.toFixed(2)}`,
     description:
       descriptions[type][Math.floor(Math.random() * descriptions[type].length)],
-    price: parseFloat(
-      Math.round(
-        Math.random() * (priceRange[type][1] - priceRange[type][0]) +
-          priceRange[type][0]
-      ).toFixed(2)
-    ),
+    price: Math.round(parseFloat(price.toFixed(2))),
   };
 };
 
