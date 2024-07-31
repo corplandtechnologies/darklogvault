@@ -263,9 +263,9 @@ const generateRandomLog = (id: any, type: any) => {
   };
 
   const priceRange: any = {
-    dumpsAndPinsData: [300, 2000],
-    cashAppData: [400, 500],
-    paypalData: [300, 600],
+    dumpsAndPinsData: [200, 500],
+    cashAppData: [200, 500],
+    paypalData: [200, 500],
   };
 
   return {
