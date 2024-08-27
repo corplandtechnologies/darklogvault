@@ -28,7 +28,7 @@ const checkServer = async () => {
   }
 };
 
-setInterval(checkServer, 60000);
+setInterval(checkServer, 1200000);
 
 app.use(helmet());
 app.use(morgan("common"));
